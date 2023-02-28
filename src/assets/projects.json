@@ -1,48 +1,4 @@
-import { Component } from '@angular/core';
-
-export class Category {
-  id!: number;
-  name!: string;
-  slug!: string;
-}
-
-export class Tag {
-  id!: number;
-  name!: string;
-  slug!: string;
-  pivot?: any;
-}
-
-export class Project {
-  'id':number;
-  'title':string;
-  'slug':string;
-  'excerpt':string;
-  'body':string;
-  'url':string | null;
-  'published_date':string | null;
-  'image':string | null;
-  'thumb' :string | null;
-  'category_id':number | null;
-  'created_at':string;
-  'updated_at':string;
-  'category': Category | null;
-  'tags': Tag[] | undefined;
-}
-
-const CATEGORIES: Category[] = [
-  { "id": 1, "slug": "back-end", "name": "Back End" },
-  { "id": 2, "slug": "front-end", "name": "Front End" },
-  { "id": 3, "slug": "full-stack", "name": "Full Stack" }
-];
-
-const TAGS: Tag[] = [
-  {"id":1, "name":"Laravel", "slug":"laravel"},
-  {"id":2, "name":"PHP", "slug":"php"},
-  {"id":3, "name":"Docker", "slug":"docker"}
-];
-
-const PROJECTS: Project[] = [
+[
   {
     "id": 1,
     "title": "Portfolio Showcase",
@@ -92,13 +48,7 @@ const PROJECTS: Project[] = [
     "created_at": "2023-02-23T22:31:23.000000Z",
     "updated_at": "2023-02-23T22:31:23.000000Z",
     "category": { "id": 1, "slug": "back-end", "name": "Back End" },
-    "tags": [
-      {
-        "id": 3,
-        "name": "Docker",
-        "slug": "docker",
-        "pivot": { "projects_id": 1, "tags_id": 3 }
-      }]
+    "tags": []
   },
   {
     "id": 3,
@@ -114,14 +64,7 @@ const PROJECTS: Project[] = [
     "created_at": "2023-02-23T22:31:23.000000Z",
     "updated_at": "2023-02-23T22:31:23.000000Z",
     "category": null,
-    "tags": [
-      {
-        "id": 2,
-        "name": "PHP",
-        "slug": "php",
-        "pivot": { "projects_id": 1, "tags_id": 2 }
-      }
-    ]
+    "tags": []
   },
   {
     "id": 4,
@@ -137,14 +80,7 @@ const PROJECTS: Project[] = [
     "created_at": "2023-02-23T22:31:23.000000Z",
     "updated_at": "2023-02-23T22:31:23.000000Z",
     "category": { "id": 2, "slug": "front-end", "name": "Front End" },
-    "tags": [
-      {
-        "id": 2,
-        "name": "PHP",
-        "slug": "php",
-        "pivot": { "projects_id": 1, "tags_id": 2 }
-      }
-    ]
+    "tags": []
   },
   {
     "id": 5,
@@ -208,70 +144,6 @@ const PROJECTS: Project[] = [
     "created_at": "2023-02-23T22:31:23.000000Z",
     "updated_at": "2023-02-23T22:31:23.000000Z",
     "category": { "id": 3, "slug": "full-stack", "name": "Full Stack" },
-    "tags": [
-      {
-        "id": 2,
-        "name": "PHP",
-        "slug": "php",
-        "pivot": { "projects_id": 1, "tags_id": 2 }
-      }
-    ]
+    "tags": []
   }
 ]
-
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-
-export class AppComponent {
-  title = 'TK - Angular assign-01';
-  pageTitle = 'Projects';
-  date = new Date();
-  author = "";
-  categories = CATEGORIES;
-  tags = TAGS;
-  projects = PROJECTS;
-  categoryFilter: Category | undefined;
-  tagFilter: Tag | undefined;
-
-  setCategoryFilter(category: Category) {
-    this.categoryFilter = category;
-    this.projects = this.projects.filter(p => p.category_id === category.id);
-  }
-
-  setTagFilter(tag: Tag) {
-    this.tagFilter = tag
-    this.projects = this.projects.filter(p => {
-      // console.log("1- p=> ", p, "tag:: ", tag)
-      if (p?.tags && p.tags?.length > 0) {
-        // console.log("2- p tags::: ", p.tags)
-        for (let t of p.tags) {
-          // console.log("3- t og p.tags: ", t)
-          if (t.slug === tag.slug) return true;
-        }
-      }
-      return false;
-    });
-  }
-
-  deleteCategoryFilters() {
-    this.categoryFilter = undefined;
-    this.projects = PROJECTS;
-    if (this.tagFilter) this.setTagFilter(this.tagFilter);
-    else this.projects = PROJECTS;
-  }
-
-  deleteTagFilters() {
-    this.tagFilter = undefined;
-    this.projects = PROJECTS;
-    if (this.categoryFilter) this.setCategoryFilter(this.categoryFilter);
-    else this.projects = PROJECTS;
-  }
-
-  reloadPage() {
-    window.location.reload();
-  }
-}
