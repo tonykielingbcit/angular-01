@@ -102,9 +102,14 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    /* height: 100%; */
-    /* margin: 2rem; */
-    /* flex-flow: column nowrap; */
+  }
+  .card-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: red;
+    height: 15rem;
   }
 
   .cat-tags {
@@ -207,6 +212,11 @@
     </div>
   
     <div class="projects-container">
+      <div class="card card-empty" *ngIf="projects.length === 0">
+        <p>No result for your search</p>
+        <!-- need to add an if conditional to display empty card with information about it -->
+      </div>
+
       <div *ngFor="let project of projects" >
         
         <div class="card">

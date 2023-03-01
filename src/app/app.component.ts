@@ -239,12 +239,20 @@ export class AppComponent {
 
   setCategoryFilter(category: Category) {
     this.categoryFilter = category;
-    this.projects = this.projects.filter(p => p.category_id === category.id);
+    if (this.tagFilter)
+      this.projects = this.projects.filter(p => p.category_id === category.id);
+    else this.projects = PROJECTS.filter(p => p.category_id === category.id);
   }
 
   setTagFilter(tag: Tag) {
     this.tagFilter = tag
-    this.projects = this.projects.filter(p => {
+    let tempArray = [];
+    if (this.categoryFilter)
+      tempArray = this.projects;
+    else
+      tempArray = PROJECTS;
+
+    this.projects = tempArray.filter(p => {
       // console.log("1- p=> ", p, "tag:: ", tag)
       if (p?.tags && p.tags?.length > 0) {
         // console.log("2- p tags::: ", p.tags)
@@ -255,11 +263,11 @@ export class AppComponent {
       }
       return false;
     });
+    
   }
 
   deleteCategoryFilters() {
     this.categoryFilter = undefined;
-    this.projects = PROJECTS;
     if (this.tagFilter) this.setTagFilter(this.tagFilter);
     else this.projects = PROJECTS;
   }
@@ -272,6 +280,9 @@ export class AppComponent {
   }
 
   reloadPage() {
-    window.location.reload();
+    // window.location.reload();
+    this.categoryFilter = undefined;
+    this.tagFilter = undefined;
+    this.projects = PROJECTS;
   }
 }
