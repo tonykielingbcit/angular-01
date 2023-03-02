@@ -1,0 +1,8 @@
+<h2 class="sideBar-titles">Categories: </h2>
+<p *ngFor="let category of categories"> 
+  <span (click)="setCategoryFilter(category)" class="mouse-pointer sideBar-items" 
+    [ngStyle]="{'background-color': (category?.slug == categoryFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+  >
+    {{ category.name }}
+  </span> 
+</p>

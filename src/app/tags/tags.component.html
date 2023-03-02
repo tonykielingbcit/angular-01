@@ -1,0 +1,12 @@
+<h2 class="sideBar-titles">Tags: </h2>
+<p *ngFor="let tag of tags"> 
+    <span 
+        *ngIf="tag" 
+        (click)="setTagFilter(tag)" 
+        class="mouse-pointer sideBar-items"
+        [ngStyle]="{'background-color': (tag?.slug == tagFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+        <!-- [ngClass]="['btn']" -->
+    >
+    {{ tag.name }}
+    </span>
+</p>

@@ -1,0 +1,20 @@
+<header class="toolbar" role="banner">
+    <span (click)="clearFilters();"  class="menu-item mouse-pointer">
+        Home
+    </span>
+
+    <div class="spacer"></div>
+    
+    <span 
+        (click)="clearFilters();"  
+        class="menu-item mouse-pointer"
+        [ngClass]="['btn', 'btn-primary']"
+    >
+        {{ mainTitle }}
+    </span>
+
+    
+    <div class="spacer"></div>
+    
+    <span class="menu-item">Login</span>
+</header>
