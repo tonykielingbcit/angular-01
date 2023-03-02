@@ -24,7 +24,7 @@ export class TagsComponent {
   }
 
   setTagFilter(tag: Tag) {
-    console.log("SETTAGFILTER: ", tag)
+    // console.log("SETTAGFILTER: ", tag)
     this.tagFilter = tag;
     this.newTagFilterEvent.emit(tag);
   }

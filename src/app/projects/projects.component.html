@@ -1,4 +1,7 @@
-<div class="card card-empty" *ngIf="projects.length === 0">
+
+<!-- <input [(ngModel)]="projects" ng-reflect-model="[projects]"> -->
+
+<div class="card card-empty" *ngIf="projects.length === 0 || !projects">
     <p>No result for your search</p>
 </div>
 
