@@ -1,34 +1,81 @@
 
 <!-- <input [(ngModel)]="projects" ng-reflect-model="[projects]"> -->
 
-<div class="card card-empty" *ngIf="projects.length === 0 || !projects">
+<!-- <div class="card card-empty" *ngIf="projects.length === 0 || !projects">
     <p>No result for your search</p>
-</div>
+</div> -->
 
-<article
-    *ngFor="let project of projects | projectFilter : tagFilter"
-    [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
->
-    <div class="card">
-    <div>
-        <h3 style="margin-bottom: 1.5rem"> {{ project.title | uppercase }} </h3>
-        <p> {{ project.excerpt }} </p>
-    </div>
-    
-    <div style="margin-top: 1.5rem;">
-        <p>
-        <b>Category: </b> 
-        <span *ngIf="project.category" (click)="setCategoryFilter(project.category)" class="mouse-pointer"> 
-            {{ project.category.name }} 
-        </span> 
-        </p>
-        <span><b>Tags: </b>
-        <span *ngFor="let tag of project.tags">
-            <span *ngIf="tag" (click)="setTagFilter(tag)" class="mouse-pointer">
-            {{ tag.name }}
+<div class="content" role="main">
+
+
+<ng-container *ngIf="!selectedProject">
+
+    <div class="sideBar">
+        <div class="sideBar-box">
+          <div *ngIf="categoryFilter || tagFilter">
+            <h2>Filter: </h2>
+            <p *ngIf="categoryFilter" class="item-to-delete mouse-pointer" (click)="deleteCategoryFilters()">
+              {{ categoryFilter.name }}
+              <i class="glyphicon glyphicon-trash"></i>
+            </p>
+            <p *ngIf="tagFilter" class="item-to-delete mouse-pointer" (click)="deleteTagFilters()">
+              {{ tagFilter.name }}
+              <i class="glyphicon glyphicon-trash"></i>
+            </p>
+          </div>
+  
+          <app-categories
+            [categoryFilter]="categoryFilter"
+            (newCategoryFilterEvent)="setCategoryFilter($event)"
+          ></app-categories>
+  
+          <app-tags
+            [tagFilter]="tagFilter"
+            (newTagFilterEvent)="setTagFilter($event)"
+          ></app-tags>
+  
+        </div>
+      </div>
+  
+
+
+    <article
+        *ngFor="let project of projects | projectFilter : tagFilter"
+        [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
+    >
+        <div class="card">
+        <div>
+            <section routerLink="/projects/{{project.id}}">
+                <h3 style="margin-bottom: 1.5rem"> {{ project.title | uppercase }} </h3>
+                <p> {{ project.excerpt }} </p>
+            </section>
+
+        </div>
+        
+        <div style="margin-top: 1.5rem;">
+            <p>
+            <b>Category: </b> 
+            <span *ngIf="project.category" (click)="setCategoryFilter(project.category)" class="mouse-pointer"> 
+                {{ project.category.name }} 
+            </span> 
+            </p>
+            <span><b>Tags: </b>
+            <span *ngFor="let tag of project.tags">
+                <span *ngIf="tag" (click)="setTagFilter(tag)" class="mouse-pointer">
+                {{ tag.name }}
+                </span>
             </span>
-        </span>
-        </span>
-    </div>
-    </div>
-</article>
+            </span>
+        </div>
+        </div>
+    </article>
+</ng-container>
+
+<section *ngIf="selectedProject">
+    <div (click)="clearSelectedProject()">Back</div>
+    <app-project-detail [project]="selectedProject"></app-project-detail>
+    <!-- if line above, it will pass project down to app-project-detail component (project-detail.component.ts) -->
+    <!-- <app-project-detail></app-project-detail> -->
+</section>
+
+</div>

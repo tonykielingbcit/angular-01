@@ -7,10 +7,12 @@ import { ProjectsComponent } from './projects/projects.component';
 import { TagsComponent } from './tags/tags.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HeaderComponent } from './header/header.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, ProjectFilterPipe, ProjectsComponent, TagsComponent, CategoriesComponent, HeaderComponent],
-  imports: [BrowserModule, FormsModule],
+  declarations: [AppComponent, ProjectFilterPipe, ProjectsComponent, TagsComponent, CategoriesComponent, HeaderComponent, ProjectDetailComponent],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

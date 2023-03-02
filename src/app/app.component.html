@@ -1,14 +1,23 @@
 
 <div class="main-container">
+  <header>
+    <h1>{{ title }}</h1>
+    <nav>
+      <span routerLink="/">Home</span> |
+      <span routerLink="/projects">Projects</span>
+    </nav>
+  </header>
 
-  <app-header
+  <!-- <app-header
     (newReloadPage)="reloadPage()"
     mainTitle = "Here are the Projects"
-  />
+  /> -->
+
+  <router-outlet></router-outlet>
   
-  <div class="content" role="main">
+  <!-- <div class="content" role="main"> -->
     
-    <div class="sideBar">
+    <!-- <div class="sideBar">
       <div class="sideBar-box">
         <div *ngIf="categoryFilter || tagFilter">
           <h2>Filter: </h2>
@@ -33,22 +42,25 @@
         ></app-tags>
 
       </div>
-    </div>
+    </div> -->
+
+    <!-- <router-outlet></router-outlet> -->
   
-    <app-projects
+    <!-- <app-projects
       class="projects-container"
       [categoryFilter]="categoryFilter"
       (newCategoryFilterEvent)="setCategoryFilter($event)"
       [tagFilter]="tagFilter"
       (newTagFilterEvent)="setTagFilter($event)"
-    ></app-projects>
+    ></app-projects> -->
 
-  </div>
+  <!-- </div> -->
 
 
   <!-- Footer -->
   <footer>
     <h4>Tony Kieling &copy; - 2023</h4>
   </footer>
+
 </div>
 

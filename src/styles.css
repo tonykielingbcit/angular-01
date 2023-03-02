@@ -127,6 +127,10 @@
     margin-top: 1.5rem;
   }
 
+  header {
+    background-color: #1976d2;
+  }
+
   footer {
     grid-area: footer;
     height: 4rem;
