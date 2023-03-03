@@ -9,9 +9,9 @@ import { Tag } from './model/tag';
 })
 
 export class AppComponent {
-  title: string = 'TK - Angular assign-01';
+  title: string = 'SSD - Angular assignment 2023';
   date = new Date();
-  author = "";
+  author = "Tony Kieling";
 
   tagFilter: Tag | undefined;
   setTagFilter(tag: Tag) {

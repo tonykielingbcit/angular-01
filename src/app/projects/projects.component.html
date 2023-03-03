@@ -1,81 +1,82 @@
-
-<!-- <input [(ngModel)]="projects" ng-reflect-model="[projects]"> -->
-
-<!-- <div class="card card-empty" *ngIf="projects.length === 0 || !projects">
-    <p>No result for your search</p>
-</div> -->
-
-<div class="content" role="main">
-
-
-<ng-container *ngIf="!selectedProject">
-
-    <div class="sideBar">
-        <div class="sideBar-box">
-          <div *ngIf="categoryFilter || tagFilter">
-            <h2>Filter: </h2>
-            <p *ngIf="categoryFilter" class="item-to-delete mouse-pointer" (click)="deleteCategoryFilters()">
-              {{ categoryFilter.name }}
-              <i class="glyphicon glyphicon-trash"></i>
-            </p>
-            <p *ngIf="tagFilter" class="item-to-delete mouse-pointer" (click)="deleteTagFilters()">
-              {{ tagFilter.name }}
-              <i class="glyphicon glyphicon-trash"></i>
-            </p>
-          </div>
-  
-          <app-categories
-            [categoryFilter]="categoryFilter"
-            (newCategoryFilterEvent)="setCategoryFilter($event)"
-          ></app-categories>
-  
-          <app-tags
-            [tagFilter]="tagFilter"
-            (newTagFilterEvent)="setTagFilter($event)"
-          ></app-tags>
-  
-        </div>
-      </div>
-  
-
-
-    <article
-        *ngFor="let project of projects | projectFilter : tagFilter"
-        [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
-    >
-        <div class="card">
-        <div>
-            <section routerLink="/projects/{{project.id}}">
-                <h3 style="margin-bottom: 1.5rem"> {{ project.title | uppercase }} </h3>
-                <p> {{ project.excerpt }} </p>
-            </section>
-
-        </div>
+<div class="content">
+    <ng-container *ngIf="!selectedProject">
         
-        <div style="margin-top: 1.5rem;">
-            <p>
-            <b>Category: </b> 
-            <span *ngIf="project.category" (click)="setCategoryFilter(project.category)" class="mouse-pointer"> 
-                {{ project.category.name }} 
-            </span> 
-            </p>
-            <span><b>Tags: </b>
-            <span *ngFor="let tag of project.tags">
-                <span *ngIf="tag" (click)="setTagFilter(tag)" class="mouse-pointer">
-                {{ tag.name }}
-                </span>
-            </span>
-            </span>
+        <div class="projects-container">
+            <!-- need undesrtand pipe tagFilter..... -->
+            <!-- <div class="card card-empty" *ngIf="projects.length === 0 || !projects">
+                <p>No result for your search</p>
+            </div> -->
+            <article
+                *ngFor="let project of projects | projectFilter : tagFilter"
+                [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
+                class="card"
+            >
+                <section routerLink="/projects/{{project.id}}">
+                    <h3 class="card-title"> {{ project.title | uppercase }} </h3>
+                    <p> {{ project.excerpt }} </p>
+                </section>
+            
+                <div style="margin-top: 1.5rem;">
+                    <p>
+                    <b>Category: </b> 
+                    <span *ngIf="project.category" (click)="setCategoryFilter(project.category)" class="card-items"> 
+                        {{ project.category.name }} 
+                    </span> 
+                    </p>
+                    <span><b>Tags: </b>
+                        <span *ngFor="let tag of project.tags">
+                            <span *ngIf="tag" (click)="setTagFilter(tag)" class="card-items">
+                            {{ tag.name }}
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </article>
         </div>
-        </div>
-    </article>
-</ng-container>
 
-<section *ngIf="selectedProject">
-    <div (click)="clearSelectedProject()">Back</div>
-    <app-project-detail [project]="selectedProject"></app-project-detail>
-    <!-- if line above, it will pass project down to app-project-detail component (project-detail.component.ts) -->
-    <!-- <app-project-detail></app-project-detail> -->
-</section>
+        <div class="sideBar">
+            <div class="sideBar-box">
+            <div *ngIf="categoryFilter || tagFilter">
+                <h2>Filter: </h2>
+                <div *ngIf="categoryFilter && tagFilter">
+                    <p *ngIf="categoryFilter" 
+                        class="item-to-delete mouse-pointer"
+                        routerLink="/projects/clear-filters"
+                    >
+                        Clear Filters
+                        <!-- <i class="fas fa-ban"></i> -->
+                        <i class="fas fa-eye-slash"></i>
+                </div>
+                <p *ngIf="categoryFilter" class="item-to-delete mouse-pointer" (click)="deleteCategoryFilters()">
+                {{ categoryFilter.name }}
+                <i class="glyphicon glyphicon-trash"></i>
+                </p>
+                <p *ngIf="tagFilter" class="item-to-delete mouse-pointer" (click)="deleteTagFilters()">
+                {{ tagFilter.name }}
+                <i class="glyphicon glyphicon-trash"></i>
+                </p>
+            </div>
+    
+            <app-categories
+                [categoryFilter]="categoryFilter"
+                (newCategoryFilterEvent)="setCategoryFilter($event)"
+            ></app-categories>
+    
+            <app-tags
+                [tagFilter]="tagFilter"
+                (newTagFilterEvent)="setTagFilter($event)"
+            ></app-tags>
+    
+            </div>
+        </div>
+
+    </ng-container>
+
+    <section *ngIf="selectedProject">
+        <div (click)="clearSelectedProject()">Back</div>
+        <app-project-detail [project]="selectedProject"></app-project-detail>
+        <!-- if line above, it will pass project down to app-project-detail component (project-detail.component.ts) -->
+        <!-- <app-project-detail></app-project-detail> -->
+    </section>
 
 </div>

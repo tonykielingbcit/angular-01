@@ -1,20 +1,19 @@
-<header class="toolbar" role="banner">
-    <span (click)="clearFilters();"  class="menu-item mouse-pointer">
-        Home
-    </span>
 
-    <div class="spacer"></div>
-    
-    <span 
-        (click)="clearFilters();"  
-        class="menu-item mouse-pointer"
-        [ngClass]="['btn', 'btn-primary']"
-    >
-        {{ mainTitle }}
-    </span>
-
-    
-    <div class="spacer"></div>
-    
-    <span class="menu-item">Login</span>
-</header>
+<div>
+    <h3 style="text-align: center;">{{ title }}</h3>
+    <nav class="header-clickable-container">
+        <div
+            class="header-clickable"
+            routerLink="/"
+        >
+            Home
+        </div>
+        
+        <div
+            class="header-clickable"
+            routerLink="/projects"
+        >
+            Projects
+        </div>
+    </nav>
+</div>

@@ -1,6 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { Tag } from '../model/tag';
-import { Category } from '../model/category';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +8,5 @@ import { Category } from '../model/category';
 
 
 export class HeaderComponent {
-  @Input() tagFilter: Tag | undefined;
-  @Input() categoryFilter: Category | undefined;
-  @Input() mainTitle: String | undefined;
-  @Output() newReloadPage = new EventEmitter();
-
-  constructor() {}
-
-  ngOnInit(): void { }
-
-  clearFilters() {
-    this.categoryFilter = undefined;
-    this.tagFilter = undefined;
-    this.newReloadPage.emit();
-  }
+  @Input() title: string | undefined;
 }

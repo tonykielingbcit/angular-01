@@ -3,8 +3,7 @@ import { ProjectService } from '../project.service';
 import { Project } from '../model/project';
 import { Category } from '../model/category';
 import { Tag } from '../model/tag';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -20,7 +19,8 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   projects: Project[] = [];
@@ -78,10 +78,15 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const segment: string = this.route.snapshot.url[1]?.path;
+      
       if (segment === 'categories') {
         this.getProjectsByCategory();
       } else if (segment === 'tags') {
         this.getProjectsByTag();
+      } else if (segment === "clear-filters") {
+        this.deleteCategoryFilters();
+        this.deleteTagFilters();
+        this.router.navigate(["/projects"]);
       } else {
         this.getProjects();
       }

@@ -1,0 +1,39 @@
+
+<div class="project-detail-container">
+    <div>
+        <button 
+            (click)="goBack()"
+            class="project-detail-button"
+        >Back</button>
+    </div>
+    
+    <article *ngIf="project">
+        <section>
+            <h2>{{ project.title | uppercase }}</h2>
+            <div [innerHtml]="project.body"></div>
+        </section>
+    
+        <div>
+            <div *ngIf="project.category">
+                Category: 
+                <span 
+                    class="card-items"
+                    routerLink="/projects/categories/{{project.category.id}}"
+                >{{ project.category.name }}</span>
+            </div>
+            <div *ngIf="project.tags?.length">
+                Tags:
+                <span 
+                    class="card-items" 
+                    *ngFor="let tag of project.tags"
+                >
+                    <span
+                        routerLink="/projects/tags/{{tag.id}}"
+                    >
+                        {{ tag.name }}
+                    </span>
+                </span>
+            </div>
+        </div>
+    </article>
+</div>

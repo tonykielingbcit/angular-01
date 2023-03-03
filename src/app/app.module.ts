@@ -9,9 +9,11 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HeaderComponent } from './header/header.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, ProjectFilterPipe, ProjectsComponent, TagsComponent, CategoriesComponent, HeaderComponent, ProjectDetailComponent],
+  declarations: [AppComponent, ProjectFilterPipe, ProjectsComponent, TagsComponent, CategoriesComponent, HeaderComponent, ProjectDetailComponent, FooterComponent, HomeComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
