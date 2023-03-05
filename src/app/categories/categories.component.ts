@@ -18,8 +18,11 @@ export class CategoriesComponent {
     this.categories = this.categoryService.getCategories();
   }
 
+  thinScreen: Boolean = true;
   ngOnInit(): void {
     this.getCategories();
+    if (window.innerWidth > 800)
+      this.thinScreen = false;
   }
 
   setCategoryFilter(category: Category) {

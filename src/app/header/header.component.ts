@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+// import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -8,5 +10,11 @@ import { Component, Input } from '@angular/core';
 
 
 export class HeaderComponent {
+
+  constructor(
+    // private route: ActivatedRoute,
+    // private router: Router
+  ) {}
+
   @Input() title: string | undefined;
 }

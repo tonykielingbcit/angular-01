@@ -19,8 +19,15 @@ export class TagsComponent {
     this.tags = this.tagService.getTags();
   }
   
+  // ngOnInit(): void {
+  //   this.getTags();
+  // }
+
+  thinScreen: Boolean = true;
   ngOnInit(): void {
     this.getTags();
+    if (window.innerWidth > 800)
+      this.thinScreen = false;
   }
 
   setTagFilter(tag: Tag) {

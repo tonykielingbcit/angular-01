@@ -1,4 +1,4 @@
-<h2 class="sideBar-titles">Categories: </h2>
+<!-- <h2 class="sideBar-titles">Categories: </h2>
 <p *ngFor="let category of categories"> 
   <span 
     class="mouse-pointer sideBar-items" 
@@ -7,4 +7,37 @@
   >
     {{ category.name }}
   </span> 
-</p>
+</p> -->
+
+<div *ngIf="thinScreen; then thinScreenTempt else largeScreenTempt">
+</div>
+
+<ng-template #thinScreenTempt>
+  <div class="sideBar-thin-screen">
+    <h2 class="sideBar-titles">Categories: </h2>
+    <div class="thin-items-flex-row">
+      <div *ngFor="let category of categories">
+        <button 
+          class="mouse-pointer"
+          (click)="setCategoryFilter(category)" 
+          [ngStyle]="{'background-color': (category?.slug == categoryFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+        >
+          {{ category.name }}
+        </button> 
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #largeScreenTempt>
+  <h2 class="sideBar-titles">Categories: </h2>
+  <p *ngFor="let category of categories"> 
+    <span 
+      class="mouse-pointer sideBar-items" 
+      (click)="setCategoryFilter(category)" 
+      [ngStyle]="{'background-color': (category?.slug == categoryFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+    >
+      {{ category.name }}
+    </span> 
+  </p>
+</ng-template>

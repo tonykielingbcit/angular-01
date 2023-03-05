@@ -1,0 +1,26 @@
+/* .thin-items-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+} */
+
+/* .sideBar-thin-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+.sideBar-titles {
+    text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+    .sideBar-titles {
+        text-align: left;
+    }
+    
+}

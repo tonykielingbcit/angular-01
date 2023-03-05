@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProjectService } from '../project.service';
@@ -7,14 +7,16 @@ import { Project } from '../model/project';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css']
+  styleUrls: ['./project-detail.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class ProjectDetailComponent {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private location: Location
+    private location: Location,
+    // private body: String
   ) {}
   @Input() project?: Project;
   // if projects.component.html is not passing down 'project', it is no longer needed to receive this @Input

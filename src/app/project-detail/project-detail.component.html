@@ -7,22 +7,25 @@
         >Back</button>
     </div>
     
-    <article *ngIf="project">
+    <article *ngIf="project" class="project-card-detail">
         <section>
             <h2>{{ project.title | uppercase }}</h2>
-            <div [innerHtml]="project.body"></div>
+            <div class="project-detail-card-image">
+                <img [src]="'assets/images/project-img-default.png'" alt="Project Image" />
+            </div>
+            <div [innerHtml]="project.body" class="project-description"></div>
         </section>
     
         <div>
             <div *ngIf="project.category">
-                Category: 
+                <b>Category: </b>
                 <span 
                     class="card-items"
                     routerLink="/projects/categories/{{project.category.id}}"
                 >{{ project.category.name }}</span>
             </div>
             <div *ngIf="project.tags?.length">
-                Tags:
+                <b>Tags:</b>
                 <span 
                     class="card-items" 
                     *ngFor="let tag of project.tags"

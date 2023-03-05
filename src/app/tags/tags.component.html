@@ -1,4 +1,4 @@
-<h2 class="sideBar-titles">Tags: </h2>
+<!-- <h2 class="sideBar-titles">Tags: </h2>
 <p *ngFor="let tag of tags"> 
     <span 
         *ngIf="tag" 
@@ -8,4 +8,38 @@
     >
     {{ tag.name }}
     </span>
-</p>
+</p> -->
+
+<div *ngIf="thinScreen; then thinScreenTempt else largeScreenTempt">
+</div>
+
+<ng-template #thinScreenTempt>
+  <div class="sideBar-thin-screen">
+    <h2 class="sideBar-titles-thin">Tags: </h2>
+    <div class="thin-items-flex-row">
+      <div *ngFor="let tag of tags">
+        <button 
+          class="mouse-pointer"
+          (click)="setTagFilter(tag)" 
+          [ngStyle]="{'background-color': (tag?.slug == tagFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+        >
+          {{ tag.name }}
+        </button> 
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #largeScreenTempt>
+    <h2 class="sideBar-titles">Tags: </h2>
+    <p *ngFor="let tag of tags"> 
+      <span 
+        class="mouse-pointer sideBar-items" 
+        (click)="setTagFilter(tag)" 
+        [ngStyle]="{'background-color': (tag?.slug == tagFilter?.slug) ? 'lightgray' : '', 'border-radius': '5px', 'padding': '0 1rem'}"
+      >
+        {{ tag.name }}
+      </span> 
+    </p>
+  </ng-template>
+  

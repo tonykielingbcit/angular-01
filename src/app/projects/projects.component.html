@@ -1,5 +1,41 @@
 <div class="content">
     <ng-container *ngIf="!selectedProject">
+
+        <!-- sidebar for thin screens < 800px -->
+        <div class="sideBar-thin-screen">
+            <div class="sideBar-box">
+                <div *ngIf="categoryFilter || tagFilter" class="sideBar-thin-screen">
+                    <h2>Filter: </h2>
+                    <div *ngIf="categoryFilter && tagFilter">
+                        <p *ngIf="categoryFilter" 
+                            class="item-to-delete mouse-pointer"
+                            routerLink="/projects/clear-filters"
+                        >
+                            Clear Filters
+                            <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <p *ngIf="categoryFilter" class="item-to-delete mouse-pointer" (click)="deleteCategoryFilters()">
+                    {{ categoryFilter.name }}
+                    <i class="glyphicon glyphicon-trash"></i>
+                    </p>
+                    <p *ngIf="tagFilter" class="item-to-delete mouse-pointer" (click)="deleteTagFilters()">
+                    {{ tagFilter.name }}
+                    <i class="glyphicon glyphicon-trash"></i>
+                    </p>
+                </div>
+        
+                <app-categories
+                    [categoryFilter]="categoryFilter"
+                    (newCategoryFilterEvent)="setCategoryFilter($event)"
+                ></app-categories>
+        
+                <app-tags
+                    [tagFilter]="tagFilter"
+                    (newTagFilterEvent)="setTagFilter($event)"
+                ></app-tags>
+    
+            </div>
+        </div>
         
         <div class="projects-container">
             <!-- need undesrtand pipe tagFilter..... -->
@@ -11,8 +47,12 @@
                 [class.hidden]="categoryFilter && project.category?.id != categoryFilter.id"
                 class="card"
             >
-                <section routerLink="/projects/{{project.id}}">
-                    <h3 class="card-title"> {{ project.title | uppercase }} </h3>
+                <section routerLink="/projects/{{project.id}}" class="projects-clicable">
+                    
+                    <div class="projects-title-container">
+                        <img [src]="'assets/images/projects-logo-default.png'" class="projects-logo" alt="Projects logo" />
+                        <h3 class="card-title"> {{ project.title | uppercase }} </h3>
+                    </div>
                     <p> {{ project.excerpt }} </p>
                 </section>
             
@@ -34,6 +74,7 @@
             </article>
         </div>
 
+        <!-- sidebar for large screens > 800px -->
         <div class="sideBar">
             <div class="sideBar-box">
             <div *ngIf="categoryFilter || tagFilter">

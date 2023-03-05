@@ -1,19 +1,24 @@
 
 <div>
-    <h3 style="text-align: center;">{{ title }}</h3>
+    <h3 class="header-title">{{ title }}</h3>
     <nav class="header-clickable-container">
         <div
             class="header-clickable"
             routerLink="/"
+            routerLinkActive="header-is-active"
+            [routerLinkActiveOptions]="{exact: true}"
         >
             Home
+            <i class='fas fa-home'></i>
         </div>
         
         <div
             class="header-clickable"
             routerLink="/projects"
+            routerLinkActive="header-is-active"
         >
             Projects
+            <i class='far fa-clipboard'></i>
         </div>
     </nav>
 </div>

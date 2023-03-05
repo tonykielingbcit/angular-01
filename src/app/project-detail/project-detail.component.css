@@ -1,0 +1,44 @@
+.project-detail-container {
+    width: 100%;
+}
+
+
+.project-card-detail {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    /* width: 95%; */
+}
+
+.project-description {
+    padding: 1.5rem;
+}
+
+.project-description p {
+    margin-bottom: 1rem;
+}
+
+.project-description p:first-of-type::first-letter {
+    padding-left: 3rem;
+    font-weight: 900;
+    font-size: x-large;
+}
+
+.project-description p:last-of-type {
+    margin-bottom: 1rem;
+}
+
+.project-detail-card-image {
+    text-align: center;
+    margin: 1.5rem 0;
+    object-fit: scale-down;
+}
+
+@media only screen and (min-width: 800px) {
+    .project-detail-container {
+        width: 70%;
+        max-width: 700px;
+        margin: auto;
+    }
+}

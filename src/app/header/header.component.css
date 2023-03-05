@@ -1,25 +1,18 @@
-.spacer {
-    flex: 1;
+
+.header-is-active {
+    background-color: rgb(161, 211, 211);
+    color: rgb(216, 18, 18);
+    font-weight: 800;
 }
 
-.toolbar {
-    grid-area: header;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
+.header-title {
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
 }
 
-.menu-item {
-    padding: 0 2rem;
-}
-
-.mouse-pointer:hover {
-    cursor: pointer;
+@media only screen and (min-width: 800px) {
+    .header-title {
+        text-align: center;
+    }
 }
